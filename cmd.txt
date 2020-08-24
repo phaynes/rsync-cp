@@ -1,0 +1,1 @@
+CMD=`rsync --remove-source-files -zarvh -e ssh $SOURCE_HOST:$SOURCE_PATH $LOCAL_PATH ` 
