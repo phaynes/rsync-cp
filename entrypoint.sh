@@ -18,7 +18,7 @@ mkdir -p /root/in
 up_node_file="/var/up_nodes.txt"
 while IFS= read -r node_ip
 do
-  ssh -o "StrictHostKeyChecking no" root@$node_ip 'mkdir -r /root/out'
+  ssh -o "StrictHostKeyChecking no" root@$node_ip 'mkdir -p /root/out'
 done < "$up_node_file"
 
 # Ensure we don't have key setup issues.
