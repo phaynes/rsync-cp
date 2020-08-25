@@ -1,0 +1,25 @@
+name: Build rsync copy program
+
+on:
+  push:
+    branches: [ master ]
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to packages
+      run: docker login -u  ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }} docker.pkg.github.com
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag rsync-cp
+    - name: Push to packages.
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: phaynes/rsync-cp/rsync-cp
+        tag_with_ref: true
