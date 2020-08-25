@@ -18,15 +18,17 @@ mkdir -p /root/in
 up_node_file="/var/up_nodes.txt"
 while IFS= read -r node_ip
 do
-  ssh -o "StrictHostKeyChecking no" $node_ip :
+  ssh -o "StrictHostKeyChecking no" root@$node_ip 'mkdir -r /root/out'
 done < "$up_node_file"
 
 # Ensure we don't have key setup issues.
 down_node_file="/var/down_nodes.txt"
 while IFS= read -r node_ip
 do
-  ssh -o "StrictHostKeyChecking no" $node_ip :
+  ssh -o "StrictHostKeyChecking no" root@$node_ip 'mkdir -p /root/in'
 done < "$down_node_file"
+
+chmod +x /etc/run.sh
 
 crontab /var/scheduler.txt
 cron -f

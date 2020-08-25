@@ -7,6 +7,7 @@ ADD run.sh /etc/run.sh
 ADD entrypoint.sh /etc/entrypoint.sh
 ADD up_nodes.txt /var/up_nodes.txt
 ADD down_nodes.txt /var/down_nodes.txt
+
 RUN chmod +x /etc/run.sh /etc/entrypoint.sh
 
 ENTRYPOINT /etc/entrypoint.sh
