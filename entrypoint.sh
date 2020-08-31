@@ -5,6 +5,11 @@ echo "Docker container has been started"
 
 # Setup a cron schedule
 echo "* * * * * /etc/run.sh >> /var/log/cron.log 2>&1
+* * * * * sleep 10; /etc/run.sh >> /var/log/cron.log 2>&1
+* * * * * sleep 20; /etc/run.sh >> /var/log/cron.log 2>&1
+* * * * * sleep 30; /etc/run.sh >> /var/log/cron.log 2>&1
+* * * * * sleep 40; /etc/run.sh >> /var/log/cron.log 2>&1
+* * * * * sleep 50; /etc/run.sh >> /var/log/cron.log 2>&1
 # This extra line makes it a valid cron" > /var/scheduler.txt
 
 source /var/host-paths.txt
@@ -31,4 +36,5 @@ done < "$down_node_file"
 chmod +x /etc/run.sh
 
 crontab /var/scheduler.txt
+
 cron -f
